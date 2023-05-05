@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Reserve and Book</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+   <!-- scroll-up-btn -->
+    <div class="scroll-up-btn">
+      <i class="fas fa-angle-up"></i>
+  </div>
+ <!-- scroll-up-btn -->
+
+   <!-- Navbar -->
+  <nav class="navbar">
+      <div class="max-width">
+          <div class="logo"><a href="#">Tour<span>ism.</span></a></div>
+          <ul class="menu">
+              <li><a href="#/" onclick="home()" class="menu-btn">Home</a></li>
+              <li><a href="#/" onclick="about()" class="menu-btn">About</a></li>
+              <li><a href="#/" onclick="service()" class="menu-btn">Services</a></li>
+              <li><a href="#/" onclick="contact()" class="menu-btn">Contact</a></li>
+              <li><a href="/" type="button" class="menu-btn" class="signup"><span onclick="logout()">LogOut</span></a></li>
+          </ul>
+          <div class="menu-btn">
+              <i class="fas fa-bars"></i>
+          </div>
+      </div>
+  </nav>
+  <!-- navbar -->
+
+  <!-- booking form -->
+  <div class="column right">
+    <h1 style="margin: 5px;">Booking Details</h1>
+    <!-- <div class="text" style="color: #111;">Message me</div> -->
+    <form action="#" id="forme">
+        <div class="col1">
+            <div class="fields">
+                <div class="field name">
+                    <input type="text" placeholder="From" required>
+                </div>
+                <div class="field email">
+                    <input type="email" placeholder="To" required>
+                </div>
+            </div>
+            <div class="fields">
+                <div class="field name">
+                    <input type="date" placeholder="Departure date" required>
+                </div>
+                <div class="field email">
+                    <input type="text" placeholder="Departure Time" required>
+                </div>
+            </div>
+            <div class="fields">
+                <div class="field name">
+                    <select required>
+                        <option value="">Adult(12+ Yrs)</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5+</option>
+                    </select>
+                </div>
+                <div class="field email">
+                    <select required>
+                        <option value="">Children(2-11)</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5+</option>
+                    </select>
+                </div>
+            </div>
+            <div class="fields">
+                <div class="field name">
+                    <select name="" id="">
+                        <option>Preferred Airline</option>
+                        <option value="American Airline">American Airline</option>
+                        <option value="Delta Airlines">Delta Airlines</option>
+                        <option value="Frontier Airline">Frontier Airline</option>
+                        <option value="Jet Blue">Jet Blue</option>
+                        <option value="Southwest Airlines">Southwest Airlines</option>
+                    </select>
+                </div>
+                <div class="field email">
+                    <select name="" id="">
+                        <option>Preferred Seating</option>
+                        <option value="Window">Window</option>
+                        <option value="Aisle">Aisle</option>
+                        <option value="Special">Special (Request note below)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+      <div class="col2">
+        <h1 style="margin: 20px;margin-bottom: 30px;">Persnol Details</h1>
+        <div class="fields">
+            <div class="field name">
+                <input type="text" placeholder="FullName" required>
+            </div>
+            <div class="field email">
+                <input type="email" placeholder="Email" required>
+            </div>
+        </div>
+        <div class="field">
+            <input type="text" placeholder="Subject" required>
+        </div>
+        <div class="field textarea">
+            <textarea cols="30" rows="10" placeholder="Message.." required></textarea>
+        </div>
+        <div class="button-area">
+            <button type="submit" style="color: #111;">Submit</button>
+        </div>
+      </div>
+    </form>
+</div>
+<!-- booking form -->
+
+
+    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+  apiKey: "AIzaSyBdbbnJKdewhXHVWX771RQJ5668hUhOh-M",
+  authDomain: "login-register-74727.firebaseapp.com",
+  projectId: "login-register-74727",
+  storageBucket: "login-register-74727.appspot.com",
+  messagingSenderId: "350322716568",
+  appId: "1:350322716568:web:7fd25c722ab7f5d5cf45ed",
+  measurementId: "G-XV6DRJ2F0P"
+};
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  var database = firebase.database();
+    </script>
+    <script type="text/javascript" src="index.js"></script>
+</body>
+</html>

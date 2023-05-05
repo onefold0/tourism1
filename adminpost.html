@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+  <link rel="stylesheet" href="adminpost.css">
+</head>
+
+<body>
+  <form class="main" id="form" novalidate="novalidate">
+    <div id="forminner">
+      <div class="row">
+        <div class="col s12">
+          <h5 class="center-align teal-text">Upload Adventure Travel</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="text" id="namevalue" name="Name" class="validate">
+          <label for="name">Title</label>
+        </div>
+      </div>
+      <div class="row">
+        <input type="file" id="file-input">
+      </div>
+      <div class="row" style="margin-bottom:0!important;">
+        <div class="input-field col s6 offset-s4">
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12" id="progress">
+        </div>
+      </div>
+      <div id="success" style="display:none">
+        <h5 class="left-align teal-text">File Uploaded</h5>
+        <p>Your file has been successfully uploaded.</p>
+      </div>
+    </div>
+    <div id="forminner" class="conta">
+      <div class="row">
+        <div class="col s12">
+          <h5 class="center-align teal-text" style="padding-bottom: 30px;">Upload Service</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="text" id="namevalue1" name="Name" class="validate">
+          <label for="name">Title</label>
+        </div>
+      </div>
+      <div class="row">
+        <input type="file" id="file-input1">
+      </div>
+      <div class="row" style="margin-bottom:0!important;">
+        <div class="input-field col s6 offset-s4">
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12" id="progress">
+        </div>
+      </div>
+      <button class="waves-effect red btn submit-btn" type="submit" id="submit-btn"
+        style="position: relative;right: 130px;">Upload</button><br>
+        <span class="waves-effect red btn submit-btn" onclick="logout()" style="margin-top: 20px;position: relative;right: 130px;">LogOut</span>
+
+      <div id="success" style="display:none">
+      </div>
+    </div>
+  </form>
+
+  <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+
+
+  <script>
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+  apiKey: "AIzaSyBdbbnJKdewhXHVWX771RQJ5668hUhOh-M",
+  authDomain: "login-register-74727.firebaseapp.com",
+  projectId: "login-register-74727",
+  storageBucket: "login-register-74727.appspot.com",
+  messagingSenderId: "350322716568",
+  appId: "1:350322716568:web:7fd25c722ab7f5d5cf45ed",
+  measurementId: "G-XV6DRJ2F0P"
+};
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    var database = firebase.database();
+//         const ref = database.ref('datas');
+//         ref.on('value', (snapshot) => {
+//   const users = snapshot.val();
+//   console.log(users);
+// });
+  </script>
+  <script>
+    const form = document.querySelector('form');
+    const fileInput = document.querySelector('#file-input');
+    const fileInput1 = document.querySelector('#file-input1');
+    // Create a storage reference
+    const storageRef = firebase.storage().ref();
+
+    // Listen for form submission
+    form.addEventListener('submit', (e) => {
+      e.preventDefault(); // Prevent form from submitting
+
+      // Get the selected file
+      const file = fileInput.files[0];
+      const file1 = fileInput1.files[0];
+
+      // Create a child reference
+      const fileRef = storageRef.child(`files/${file.name}`);
+      const fileRef1 = storageRef.child(`files2/${file1.name}`);
+      console.log(fileRef.name);
+      console.log(fileRef1.name);
+      // Upload the file
+      fileRef.put(file).then(() => {
+        // Get the download URL
+        fileRef.getDownloadURL().then((url) => {
+          // Use the download URL
+          // const imgee = document.querySelector('#image');
+          // imgee.src =`${url}`;
+          const namevalue = document.getElementById('namevalue').value;
+          // localStorage set item
+          localStorage.setItem('url', JSON.stringify([...JSON.parse(localStorage.getItem('url') || "[]"), { image1: url },]));
+          localStorage.setItem('name', JSON.stringify([...JSON.parse(localStorage.getItem('name') || "[]"), { namew: namevalue },]));
+          // localStorage.setItem('url', `${namevalue}`);
+          //   console.log(url);
+        });
+      });
+
+      fileRef1.put(file1).then(() => {
+        // Get the download URL
+        fileRef1.getDownloadURL().then((url1) => {
+          // Use the download URL
+          // const imgee = document.querySelector('#image');
+          // imgee.src =`${url}`;
+          const namevalue1 = document.getElementById('namevalue1').value;
+          // localStorage set item
+          localStorage.setItem('url1', JSON.stringify([...JSON.parse(localStorage.getItem('url1') || "[]"), { image11: url1 },]));
+          localStorage.setItem('name1', JSON.stringify([...JSON.parse(localStorage.getItem('name1') || "[]"), { namew1: namevalue1 },]));
+          // localStorage.setItem('url', `${namevalue}`);
+          //   console.log(url);
+        });
+      });
+
+      alert("succesfull")
+    });
+  </script>
+
+  <script>
+    document.addEventListener("change", function (t) {
+      e = t.target;
+      if (e.tagName == "INPUT" && e.type.toLowerCase() == "file") {
+        if (e.files.length > 0) {
+          if (e.files.length == 1) {
+            e.setAttribute('data-text-enabled', 1);
+            e.setAttribute('data-text', '1 File selected: "' + e.files[0].name + '"');
+          } else {
+            e.setAttribute('data-text-enabled', 1);
+            e.setAttribute('data-text', e.files.length + ' File' + (e.files.length > 1 ? 'S' : '') + ' selected');
+          }
+        } else {
+          e.setAttribute('data-text-enabled', 0);
+        }
+      }
+    });
+
+
+
+
+    firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // let rand=Math.ceil(Math.random()*10);
+      // User is signed in.
+      // window.alert("hi"+" "+user.uid); 
+      var userid=user.uid;
+      var nam = user.displayName;
+      appt(userid, nam);
+    } else {
+      // No user is signed in.
+      /*window.location.replace("http://127.0.0.1:5500/login.html");*/
+      // window.location.href = "signUp.html";
+      window.location.href = "indexMain.html";
+
+    }
+  });
+
+  function logout(){
+    firebase.auth().signOut()
+  .then(function() {
+    // Sign-out successful.
+  })
+  .catch(function(error) {
+    // An error happened
+    window.alert("Error:"+error);
+  });
+  }
+
+  var db = firebase.database();
+  var ref = db.ref("/text");
+  ref.on("value", function(snapshot) {
+    console.log(snapshot.val());
+  });
+
+
+function appt(id,name){
+var dbref = firebase.database().ref();
+var somevalue = "hi";
+dbref.child("text").set(id);
+alert(id);
+alert(name);
+}
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+
+</body>
+
+</html>

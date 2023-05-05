@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signup</title>
+    <link rel="stylesheet" href="signup.css">
+    <script src="https://kit.fontawesome.com/2aaec91adf.js" crossorigin="anonymous"></script>
+    
+
+</head>
+<body>
+<div class="cont" style="width:500px;">
+  <div class="form sign-in" id="login-form">
+    <form action="#">
+    <h2>Welcome back,</h2>
+    <label>
+      <!-- <span>Email</span> -->
+      <input class="email1" type="email" placeholder="Email" id="eimp" required/>
+    </label>
+    <label>
+      <!-- <span>Password</span> -->
+      <input class="password1" type="password" placeholder="Password" id="pimp" required />
+    </label>
+    <button><p class="forgot-pass">Forgot password?</p></button>
+    <button type="submit" class="submit">Sign In</button>
+    <!-- <button type="button" class="fb-btn">Sign In with <i class="fa-brands fa-google"></i></button> -->
+  </form>
+  </div>
+  <div class="sub-cont" style="display: none;">
+    <div class="img">
+      <div class="img__text m--up">
+        <h2>New here?</h2>
+        <p>Sign up and discover great amount of new opportunities!</p>
+      </div>
+      <div class="img__text m--in">
+        <h2>One of us?</h2>
+        <p>If you already has an account, just sign in. We've missed you!</p>
+      </div>
+      <div class="img__btn">
+        <button><span class="m--up">Sign Up</span></button>
+        <button><span class="m--in">Sign In</span></button>
+      </div>
+    </div>
+    <div class="form sign-up" id="signup-form">
+      <form action="#">
+      <h2>Time to feel like home,</h2>
+      <label>
+  
+        <input class="name" type="text" placeholder="Name" id="name" required/>
+      </label>
+      <label>
+    
+        <input class="email" type="email" placeholder="Email"  id="email" required/>
+      </label>
+      <label>
+     
+        <input class="password" type="password" placeholder="Password" id="password" required />
+      </label>
+      <button type="submit" class="submit">Sign Up</button>
+      <button type="button" class="fb-btn" id="googlebtn">Join with <i class="fa-brands fa-google"></i></button>
+    </form>
+    </div>
+  </div>
+</div>
+
+<!-- <script>
+  document.querySelector('.img__btn').addEventListener('click', function() {
+  document.querySelector('.cont').classList.toggle('s--signup');
+});
+</script> -->
+
+<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+
+
+<script>
+  // Your web app's Firebase configuration
+     const firebaseConfig = {
+  apiKey: "AIzaSyBdbbnJKdewhXHVWX771RQJ5668hUhOh-M",
+  authDomain: "login-register-74727.firebaseapp.com",
+  projectId: "login-register-74727",
+  storageBucket: "login-register-74727.appspot.com",
+  messagingSenderId: "350322716568",
+  appId: "1:350322716568:web:7fd25c722ab7f5d5cf45ed",
+  measurementId: "G-XV6DRJ2F0P"
+};
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  var database = firebase.database();
+</script>
+<script src="admin.js"></script>
+</body>
+</html>
